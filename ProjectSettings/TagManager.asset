@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Enemy
+  - Schim
   layers:
   - Default
   - TransparentFX
@@ -42,4 +43,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Forground
+    uniqueID: 3476535339
+    locked: 0
+  - name: Midground
+    uniqueID: 998639179
+    locked: 0
+  - name: Partical
+    uniqueID: 1565804017
+    locked: 0
+  - name: Background
+    uniqueID: 3251419043
     locked: 0
