@@ -5,10 +5,10 @@ using UnityEngine.AI;
 
 public class SchimAI : MonoBehaviour
 {
-    public enum EnemyStates { Idle, Panic }
-    public EnemyStates state;
+    public enum SchimStates { Idle, Run }
+    public SchimStates state;
 
-    public float panicRange = 5;
+    public float runRange = 5;
     public float speed = 3;
 
     private float waitTimer;
@@ -21,7 +21,7 @@ public class SchimAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
         waitTimer = Random.Range(3, 5);
-        state = EnemyStates.Idle;
+        state = SchimStates.Idle;
     }
 
     // Update is called once per frame
@@ -33,17 +33,17 @@ public class SchimAI : MonoBehaviour
     private void ExecuteState()
     {
 
-        if (CheckPlayerInRange(panicRange))
+        if (CheckPlayerInRange(runRange))
         {
-            state = EnemyStates.Panic;
+            state = SchimStates.Run;
         }
 
         switch (state)
         {
-            case EnemyStates.Panic:
-                PanicState();
+            case SchimStates.Run:
+                RunState();
                 break;
-            case EnemyStates.Idle:
+            case SchimStates.Idle:
                 IdleState();
                 break;
         }
@@ -64,14 +64,14 @@ public class SchimAI : MonoBehaviour
         }
     }
 
-    private void PanicState()
+    private void RunState()
     {
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, -1 * speed * Time.deltaTime);
         //Vector2 awayFromPlayerDirection = transform.position - player.transform.position;
 
-        if (!CheckPlayerInRange(panicRange * 1.5f))
+        if (!CheckPlayerInRange(runRange * 1.5f))
         {
-            SwitchState(EnemyStates.Idle);
+            SwitchState(SchimStates.Idle);
         }
     }
 
@@ -85,7 +85,7 @@ public class SchimAI : MonoBehaviour
         agent.SetDestination(position);
     }
 
-    public void SwitchState(EnemyStates newState)
+    public void SwitchState(SchimStates newState)
     {
         state = newState;
     }
