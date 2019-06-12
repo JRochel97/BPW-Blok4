@@ -26,6 +26,5 @@ public class RunningShadow : MonoBehaviour
         {
             animator.speed = Mathf.Lerp(animator.speed, 1, smooth* Time.deltaTime);
         }
-        
     }
 }
