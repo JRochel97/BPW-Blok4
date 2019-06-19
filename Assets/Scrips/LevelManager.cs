@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
     {
         if (Input.GetKey("escape"))
         {
-            SceneManager.LoadScene("Menu");
+            StartCoroutine(Escape());
         }
     }
 
@@ -41,5 +41,12 @@ public class LevelManager : MonoBehaviour
         completeLevelUI.SetActive(true);
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    IEnumerator Escape()
+    {
+        completeLevelUI.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("Menu");
     }
 }
